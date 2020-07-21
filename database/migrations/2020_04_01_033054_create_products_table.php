@@ -17,11 +17,10 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('product_code')->unique();
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->string('image');
-            $table->double('price', 8, 2)->default(0);
+            $table->integer('price');
             $table->string('slug');
-            $table->integer('quantity');
             $table->integer('promotion');
             
             $table->bigInteger('brand_id')->unsigned();
@@ -37,8 +36,10 @@ class CreateProductsTable extends Migration
             ->on('categories')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->boolean('isdelete');
+            $table->boolean('isdisplay');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

@@ -16,12 +16,14 @@ class CreateAboutsTable extends Migration
         Schema::create('abouts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('name');
             $table->string('phone');
             $table->text('content');
             $table->string('email');
             $table->string('logo');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('address');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

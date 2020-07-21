@@ -15,11 +15,13 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->string('description');
+            $table->string('name');
+            $table->text('description');
             $table->string('slug');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->boolean('isdelete');
+            $table->boolean('isdisplay');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

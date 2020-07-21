@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Models\About;
+use App\Models\Product;
+use App\Http\Requests\LoginRequest;
+use Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -35,5 +41,74 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout', 'adminLogout');
+        $this->middleware('guest:client')->except('logout', 'clientLogout');
+    }
+
+    public function showAdminLoginForm()
+    {
+        if (Auth::guard('admin')->check()) {
+            return back();
+        }
+        return view('admin.auth.login', ['url' => 'admin']);
+    }
+
+    public function adminLogin(Request $request)
+    {
+        $this->validate($request, [
+            'username'   => 'required',
+            'password' => 'required'
+        ]);
+
+        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password, 'level' => 1, 'isdelete' => false], $request->get('remember'))) {
+
+            return redirect()->intended('/admin/home');
+        }
+        Session::flash('err',trans('validation.contact'));
+        return back()->withInput($request->only('username', 'remember'))->with('err',trans('validation.contact'));
+    }
+
+    public function showClientLoginForm()
+    {
+        $abouts = About::take(1)->get(); 
+        if (Auth::guard('client')->check()) {
+            return back();
+        }
+        return view('user.auth.login', ['url' => 'client'],compact('abouts'));
+    }
+
+    public function clientLogin(LoginRequest $request)
+    {
+       $request->validated();
+        if (Auth::guard('client')->attempt(['username' => $request->username, 'password' => $request->password, 'level' => 2, 'isdelete' => false], $request->get('remember'))) {   
+            //Kiem tra url truoc do co phai POST add-to-cart k?
+            $start = strpos($request->session()->get('url.intended'),'add-to-cart');
+            if ($start) {
+                //GET id product 
+                $end = strpos($request->session()->get('url.intended'),'?');
+                $id = substr($request->session()->get('url.intended'), $start+12,$end-$start-12);
+                $product = Product::findOrfail($id);
+                return redirect('products/'.$product->name);
+            } 
+            return redirect()->intended('/');
+        }
+        Session::flash('err','Username or Password incorrect!');
+        return back()->withInput($request->only('username', 'remember'))->with('err',trans('log.passerr'));
+    }
+
+    // Dang xuat Admin
+    public function adminLogout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect('/admin/login');
+    }
+
+    // Dang xuat Client
+    public function clientLogout(Request $request)
+    {
+        Auth::guard('client')->logout();
+        $request->session()->forget('cart');
+        //$request->session()->flush();
+        return redirect('/');
     }
 }
