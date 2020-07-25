@@ -14,7 +14,7 @@ return[
     'Userunique'=>'The username has already been taken!',
     'Usermax'=>'The username may not be greater than 255 characters!',
     'passsame'=>'Password is not the same!',
-    'passcf'=>'The confirm password field is required!',
+    'passcf'=>'Comfirm password must not be blank!',
     'firstname'=>'First Name',
     'lastname'=>'Last Name ',
     'Address'=>'Address',

@@ -1,6 +1,6 @@
 <?php 
 return[ 
-  'edit'=>'Edit Your Profile',
+  'edit1'=>'Edit Your Profile',
 	'firstname'=>'First Name',
   'lastname'=>'Last Name',
   'address'=>'Address',

@@ -95,7 +95,7 @@
 						</li>
 						@else
 						<li><a href="{{ url('/login') }}">{{__('validation.Login')}}</a></li>
-						<li><a href="{{ url('/register') }}">{{__('client.Register')}}</a></li>
+						<li><a href="{{ url('/register') }}">{{__('validation.Register')}}</a></li>
 						@endauth
 					</ul>
 				</div>

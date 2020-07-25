@@ -1,5 +1,5 @@
 @extends('user.layout.main')
-@section('title','Home')
+@section('title',__('client.Home'))
 @section('content')
 <!-- RIGHT SIDEBAR MENU AREA START -->
 <div class="right_sidebar_menu_area">

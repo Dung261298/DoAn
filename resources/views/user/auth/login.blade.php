@@ -1,5 +1,5 @@
 @extends('user.layout.main')
-@section('title','Login')
+@section('title',__('validation.Login'))
 @section('content')
 <!--BREADCRUMB AREA START -->
 <div class="breadcrumb_area">

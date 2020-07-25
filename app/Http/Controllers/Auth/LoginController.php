@@ -65,7 +65,7 @@ class LoginController extends Controller
             return redirect()->intended('/admin/home');
         }
         Session::flash('err',trans('validation.contact'));
-        return back()->withInput($request->only('username', 'remember'))->with('err',trans('validation.contact'));
+        return back()->withInput($request->only('username', 'remember'))->with('err',trans('log.passerr'));
     }
 
     public function showClientLoginForm()

@@ -1,5 +1,5 @@
 @extends('user.layout.main')
-@section('title','Contact')
+@section('title',__('client.Contact'))
 @section('content') 
 <!--BREADCRUMB AREA START -->
 <div class="breadcrumb_area">
@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">	
 				<div class="breadcrumb-row">
-					<h3 class="breadcrumb"><a href="/" class="home">Home</a><span>/</span>{{__('client.Contact')}}</h3>
+					<h3 class="breadcrumb"><a href="/" class="home">{{__('client.Home')}}</a><span>/</span>{{__('client.Contact')}}</h3>
 				</div>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 						<form action="{{ url('/sendcontact') }}" method="POST">
 							@csrf
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="name" type="text" placeholder="{{__('client.name')}}" />
+								<input name="name" type="text" placeholder="{{__('client.nameRequired')}}" />
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="email" type="email" placeholder="{{__('client.email')}}" />

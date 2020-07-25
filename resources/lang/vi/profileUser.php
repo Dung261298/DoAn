@@ -5,12 +5,16 @@ return[
     'lastname'=>'Tên',
     'add'=>'Địa Chỉ',
     'phone'=>'Số Điện Thoại',
-    'edit'=>'Sửa Hồ Sơ',
+    'edit'=>'Sửa Thông Tin',
   	'editpass'=>'Thay đổi mật khẩu',
-  	'allorder'=>'Tất Cả Đơn Hàng',
+  	'allorder'=>'Đơn Hàng',
   	'uncomf'=>'Chưa xác nhận',
+    'comfim'=>'Đã xác nhận',
   	'delivery'=>'Đang Giao',
   	'delivered'=>'Đã Giao',
+    'Cancelthisorder'=>'Hủy đơn hàng này!',
+    'yes'=>'Đồng ý',
+    'no'=>'Không',
   	'cancel'=>'Hủy Bỏ',
   	'detail'=>'Chi Tiết',
   	'totalamount'=>'Tổng Số Tiền',
@@ -19,5 +23,8 @@ return[
   	'cfnewpassword'=>'Nhập Lại Mật Khẩu Mới',
   	'errpass'=>'Mật khẩu mới không thể giống như mật khẩu hiện tại của bạn. Chọn một mật khẩu khác nhau.',
   	'currentpasswordRequired'=>'Vui Lòng Nhập Mật Khẩu Mới.',
+    'Editpass'=>'Thay đổi mật khẩu thành công!',
+    'Editprofile'=>'Thay đổi thông tin thành công!',
+
 ];
 

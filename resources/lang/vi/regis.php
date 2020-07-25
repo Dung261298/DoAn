@@ -14,14 +14,14 @@ return[
     'pass'=>'Mật khẩu không được bỏ trống!',
     'passmin'=>'Mật khẩu phải có ít nhất 8 ký tự!',
     'passsame'=>'Mật khẩu mới và xác nhận mật khẩu mới không giống nhau!',
-    'passcf'=>'Trường xác nhận mật khẩu là bắt buộc!',
+    'passcf'=>'Nhập lại mật khẩu không được bỏ trống!',
     'firstname'=>'Họ ',
     'lastname'=>'Tên ',
     'Address'=>'Địa Chỉ',
     'Phone'=>'Số Điện Thoại',
     'user'=>'Tên Tài Khoản',
     'Pass'=>'Mật Khẩu',
-    'Passcf'=>'Xác Nhận Mật Khẩu',
+    'Passcf'=>'Nhập lại Mật Khẩu',
 ];
        
 

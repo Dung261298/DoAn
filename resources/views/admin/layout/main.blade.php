@@ -82,13 +82,6 @@
         $('#id').val(userID);
     });
 </script>
-
-<script type="text/javascript">
-                $(function(){
-    $('.selectpicker').selectpicker();
-});
-            </script>
-
 </body>
 
 </html>

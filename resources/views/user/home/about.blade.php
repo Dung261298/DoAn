@@ -1,5 +1,5 @@
 @extends('user.layout.main')
-@section('title','About')
+@section('title',__('client.About'))
 @section('content')
 <!--BREADCRUMB AREA START -->
 <div class="breadcrumb_area">
@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">	
 				<div class="breadcrumb-row">
-					<h3 class="breadcrumb"><a href="/" class="home">Home</a><span>/</span>{{__('client.About')}}</h3>
+					<h3 class="breadcrumb"><a href="/" class="home">{{__('client.Home')}}</a><span>/</span>{{__('client.About')}}</h3>
 				</div>
 			</div>
 		</div>

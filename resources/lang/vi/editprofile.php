@@ -1,6 +1,7 @@
 <?php 
 return[ 
-  'edit'=>'Sửa Hồ Sơ',
+   'edit'=>'Cập Nhật Thông Tin',
+   'edit1'=>'Sửa Thông Tin',
 	 'firstname'=>'Họ',
    'lastname'=>'Tên',
    'address'=>'Địa Chỉ',

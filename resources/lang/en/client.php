@@ -24,7 +24,7 @@ return[
     'Pricelowtohigh'=>'Price: Low To Hight',
     'contactinfo'=>'Contact Info',
     'LEAVEAMESSAGE'=>'LEAVEAMESSAGE',
-    'name'=>'Name (Required)',
+    'nameRequired'=>'Name (Required)',
     'email'=>'Email (Required)',
     'Message'=>'Message',
     'sendcontact'=>'Send Contact',

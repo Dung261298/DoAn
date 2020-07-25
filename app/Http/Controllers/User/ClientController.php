@@ -27,17 +27,18 @@ class ClientController extends Controller
     {
         $abouts = About::take(1)->get();
         $user_id = Auth::guard('client')->user()->id; 
-        $orders = Order::orderBy('updated_at','desc')->where('user_id',$user_id);
+        $orders = Order::orderBy('created_at','desc')->where('user_id',$user_id);
         if ($request->status) {
             $orders = $orders->where('status',$request->status);            
-        }
-        $orders = $orders->get();
+        } 
+        $orders = $orders->paginate(4)->appends(request()->query());
         $quantity = array();
-        $quantity[] = Order::count();
-        $quantity[] = Order::where('status','unconfimred')->count();
-        $quantity[] = Order::where('status','delivery')->count();
-        $quantity[] = Order::where('status','delivered')->count();
-        $quantity[] = Order::where('status','cancel')->count(); 
+        $quantity[] = Order::where('user_id',$user_id)->count();
+        $quantity[] = Order::where('status','unconfimred')->where('user_id',$user_id)->count();
+        $quantity[] = Order::where('status','confimred')->where('user_id',$user_id)->count();
+        $quantity[] = Order::where('status','delivery')->where('user_id',$user_id)->count();
+        $quantity[] = Order::where('status','delivered')->where('user_id',$user_id)->count();
+        $quantity[] = Order::where('status','cancel')->where('user_id',$user_id)->count(); 
         return view('user.profile.info',compact('abouts','orders','quantity'));
     }
 
@@ -126,7 +127,8 @@ class ClientController extends Controller
         }else{
             return back()->with('err','Save error!');
         }
-        return redirect('/profile')->with('message','Edit successfully!');
+        return redirect('/profile')->with("message",trans('profileUser.Editprofile
+            '));
     }
 
     /**
@@ -179,10 +181,11 @@ class ClientController extends Controller
     }
     public function showChangePassForm() 
     {
-        return view('user.profile.changePass');
+        $abouts = About::take(1)->get(); 
+        return view('user.profile.changePass',compact('abouts'));
     }
 
-    public function changePassword(Request $request)
+     public function changePassword(Request $request)
     {
         if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
             // The passwords matches
@@ -206,11 +209,17 @@ class ClientController extends Controller
             'new_password.min' => trans('editpass.passmin'),
             'new_confirm_password.required' => trans('editpass.cfnewpasswordRequired'),
         ]);
-
         //Change Password
         $user = Auth::user();
         $user->password = bcrypt($request->get('new_password'));
         $user->save(); 
-        return redirect('/profile')->with('message','Edit successfully!');
+        return redirect('/profile')->with("message",trans('profileUser.Editpass'));
+    }
+    public function cancelOrder(Request $request)
+    { 
+        $order = Order::findOrFail($request->order_id);
+        $order->status = 'cancel';
+        $order->update(); 
+        return back();
     }
 }
